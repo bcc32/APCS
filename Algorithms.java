@@ -7,7 +7,7 @@ public class Algorithms
         ArrayList<T> list )
     {
         for ( int i = 1; i < list.size(); i++ )
-            for ( int j = 1; j < list.size(); j++ )
+            for ( int j = 1; j <= list.size() - i; j++ )
                 if ( list.get( j - 1 ).compareTo( list.get( j ) ) > 0 )
                     swap( list, j - 1, j );
     }
