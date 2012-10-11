@@ -81,6 +81,31 @@ public class Algorithms
         merge( list, 0, list.size() / 2, list.size() );
     }
 
+    public static <T extends Comparable<? super T>> void quickSort(
+        List<T> list )
+    {
+        if ( list.size() <= 1 )
+            return;
+        List<T> foo = new ArrayList<T>();
+        List<T> bar = new ArrayList<T>();
+        Iterator<T> iter = list.iterator();
+        T pivot = iter.next();
+        while ( iter.hasNext() )
+        {
+            T x = iter.next();
+            if ( x.compareTo( pivot ) <= 0 )
+                foo.add( x );
+            else
+                bar.add( x );
+        }
+        quickSort( foo );
+        quickSort( bar );
+        list.clear();
+        list.addAll( foo );
+        list.add( pivot );
+        list.addAll( bar );
+    }
+
     public static <T extends Comparable<? super T>> void selectionSort(
         List<T> list )
     {
