@@ -84,26 +84,26 @@ public class Algorithms
     public static <T extends Comparable<? super T>> void quickSort(
         List<T> list )
     {
-        if ( list.size() <= 1 )
+        quickSort( list, 0, list.size() - 1 );
+    }
+
+    public static <T extends Comparable<? super T>> void quickSort(
+        List<T> list, int foo, int bar )
+    {
+        if ( bar - foo < 1 )
             return;
-        List<T> foo = new ArrayList<T>();
-        List<T> bar = new ArrayList<T>();
-        Iterator<T> iter = list.iterator();
-        T pivot = iter.next();
-        while ( iter.hasNext() )
+        int i = foo, k = bar + 1;
+        T pivot = list.get( foo );
+        while ( k > i )
         {
-            T x = iter.next();
-            if ( x.compareTo( pivot ) <= 0 )
-                foo.add( x );
-            else
-                bar.add( x );
+            while ( ++i < k && list.get( i ).compareTo( pivot ) <= 0 );
+            while ( --k >= i && list.get( k ).compareTo( pivot ) > 0 );
+            if ( k > i )
+                swap( list, i, k );
         }
-        quickSort( foo );
-        quickSort( bar );
-        list.clear();
-        list.addAll( foo );
-        list.add( pivot );
-        list.addAll( bar );
+        swap( list, foo, k );
+        quickSort( list, foo, k - 1 );
+        quickSort( list, k + 1, bar );
     }
 
     public static <T extends Comparable<? super T>> void selectionSort(
