@@ -122,7 +122,7 @@ public class Algorithms
     public static <T extends Comparable<? super T>> void sort(
         List<T> list )
     {
-        mergeSort( list );
+        selectionSort( list );
     }
 
     public static <T extends Comparable<? super T>> void swap(
@@ -132,5 +132,14 @@ public class Algorithms
         T foo = list.get( i1 );
         list.set( i1, list.get( i2 ) );
         list.set( i2, foo );
+    }
+
+    public static void xorSwap( List<Integer> list, int a, int b )
+    {
+        if ( a == b )
+            return;
+        list.set( a, list.get( a ) ^ list.get( b ) );
+        list.set( b, list.get( a ) ^ list.get( b ) );
+        list.set( a, list.get( a ) ^ list.get( b ) );
     }
 }
