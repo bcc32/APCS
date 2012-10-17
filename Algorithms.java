@@ -122,7 +122,7 @@ public class Algorithms
     public static <T extends Comparable<? super T>> void sort(
         List<T> list )
     {
-        selectionSort( list );
+        quickSort( list );
     }
 
     public static <T extends Comparable<? super T>> void swap(
