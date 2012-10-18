@@ -3,6 +3,30 @@ import java.io.*;
 
 public class Algorithms
 {
+    public static <T extends Comparable<? super T>> int binarySearch(
+        List<T> sortedList, T elem )
+    {
+        return binarySearch( sortedList, elem, 0, sortedList.size() );
+    }
+
+    public static <T extends Comparable<? super T>> int binarySearch(
+        List<T> sortedList, T elem, int foo, int bar )
+    {
+        if ( bar - foo < 1 )
+            return -1;
+        int mid = ( foo + bar ) / 2;
+        if ( sortedList.get( foo ).equals( elem ) )
+            return foo;
+        else if ( sortedList.get( bar - 1 ).equals( elem ) )
+            return bar - 1;
+        else if ( sortedList.get( mid ).equals( elem ) )
+            return mid;
+        else if ( sortedList.get( mid ).compareTo( elem ) < 0 )
+            return binarySearch( sortedList, elem, foo + 1, mid );
+        else
+            return binarySearch( sortedList, elem, mid + 1, bar - 1 );
+    }
+
     public static <T extends Comparable<? super T>> void bubbleSort(
         List<T> list )
     {
@@ -10,6 +34,24 @@ public class Algorithms
             for ( int j = 1; j <= list.size() - i; j++ )
                 if ( list.get( j - 1 ).compareTo( list.get( j ) ) > 0 )
                     swap( list, j - 1, j );
+    }
+
+    public static <T extends Comparable<? super T>> boolean contains(
+        List<T> list, T elem )
+    {
+        for ( int i = 0; i < list.size(); i++ )
+            if ( list.get( i ).equals( elem ) )
+                return true;
+        return false;
+    }
+
+    public static <T extends Comparable<? super T>> boolean contains(
+        List<T> list, T elem, boolean sorted )
+    {
+        if ( sorted )
+            return binarySearch( list, elem ) >= 0;
+        else
+            return contains( list, elem );
     }
 
     public static <T extends Comparable<? super T>> int findMinLoc(
@@ -104,6 +146,20 @@ public class Algorithms
         swap( list, foo, k );
         quickSort( list, foo, k - 1 );
         quickSort( list, k + 1, bar );
+    }
+
+    public static <T extends Comparable<? super T>> void reverse(
+        List<T> list )
+    {
+        for ( int i = 0; i < list.size() / 2; i++ )
+            swap( list, i, list.size() - i - 1 );
+    }
+
+    public static <T extends Comparable<? super T>> void reverseSort(
+        List<T> list )
+    {
+        sort( list );
+        reverse( list );
     }
 
     public static <T extends Comparable<? super T>> void selectionSort(
