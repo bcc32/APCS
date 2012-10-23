@@ -61,6 +61,16 @@ public class Sorts
                     arr.add( j, arr.remove( i ) );
     }
 
+    //~ private static int max(
+        //~ ArrayList<Integer> arr )
+    //~ {
+        //~ int max = 0;
+        //~ for ( int i = 1; i < arr.size(); i++ )
+            //~ if ( arr.get( i ) > arr.get( max ) )
+                //~ max = i;
+        //~ return max;
+    //~ }
+
     private static void selectionSort(
         ArrayList<Integer> arr )
     {
@@ -130,6 +140,8 @@ public class Sorts
         choice = in.nextInt();
         while ( choice >= 0 )
         {
+            //~ System.out.printf( "Max index: %d\n", max( arr ) );
+            //~ System.out.printf( "Max element: %d\n", arr.get( max( arr ) ) );
             long start = 0;
             long time = 0;
             switch ( choice )
@@ -170,10 +182,12 @@ public class Sorts
             }
             printArray( arr );
             System.out.println( time );
-            System.out.print( "Search for element: " );
-            int elem = in.nextInt();
-            System.out.printf( "Index: %d\n", binarySearch( arr, elem ) );
+            //~ System.out.print( "Search for element: " );
+            //~ int elem = in.nextInt();
+            //~ System.out.printf( "Index: %d\n", binarySearch( arr, elem ) );
             Collections.shuffle( arr );
+            //~ System.out.println( Collections.min( arr ) );
+            //~ System.out.println( Collections.max( arr ) );
             printArray( arr );
             printChoices();
             choice = in.nextInt();
