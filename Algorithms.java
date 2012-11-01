@@ -144,9 +144,13 @@ public class Algorithms
         List<T> list, Comparator<T> comp )
     {
         for ( int i = 1; i < list.size(); i++ )
-            for ( int j = 0; j <= i; j++ )
-                if ( comp.compare( list.get( j ), list.get( i ) ) >= 0 )
-                    list.add( j, list.remove( i ) );
+        {
+            T x = list.get( i );
+            int j = i + 1;
+            while ( --j > 0 && comp.compare( list.get( j - 1 ), x ) > 0 )
+                list.set( j, list.get( j - 1 ) );
+            list.set( j, x );
+        }
     }
 
     public static <T extends Comparable<? super T>> void merge(
