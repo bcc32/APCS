@@ -55,6 +55,6 @@ public class Point
 
     private double sqr( double x )
     {
-        return x;
+        return x * x;
     }
 }

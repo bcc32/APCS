@@ -1,21 +1,17 @@
 public class Quadrilateral
 {
+    public final static double EPSILON = 0.00001;
+
     protected Point a, b, c, d;
 
     public Quadrilateral()
     {
-        setPointA( new Point() );
-        setPointB( new Point() );
-        setPointC( new Point() );
-        setPointD( new Point() );
+        setPoints( new Point(), new Point(), new Point(), new Point() );
     }
 
     public Quadrilateral( Point a, Point b, Point c, Point d )
     {
-        setPointA( a );
-        setPointB( b );
-        setPointC( c );
-        setPointD( d );
+        setPoints( a, b, c, d );
     }
 
     public Point getPointA()
