@@ -45,7 +45,10 @@ public class Point
 
     public double slope( Point p )
     {
-        return ( p.getY() - getY() ) / ( p.getX() - getX() );
+        if ( p.getX() != getX() )
+            return ( p.getY() - getY() ) / ( p.getX() - getX() );
+        else
+            throw new IllegalArgumentException( "Vertical line." );
     }
 
     public String toString()
