@@ -43,4 +43,12 @@ public class Trapezoid extends Quadrilateral
         else
             return Point.lineDist( b, c, d, a );
     }
+
+    public double area()
+    {
+        if ( Math.abs( a.slope( b ) - c.slope( d ) ) < EPSILON )
+            return height() * ( a.dist( b ) + c.dist( d ) ) / 2.0;
+        else
+            return height() * ( b.dist( c ) + d.dist( a ) ) / 2.0;
+    }
 }

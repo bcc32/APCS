@@ -1,5 +1,15 @@
 public class Parallelogram extends Quadrilateral
 {
+    public Parallelogram()
+    {
+        super();
+    }
+
+    public Parallelogram( Point a, Point b, Point c, Point d )
+    {
+        super( a, b, c, d );
+    }
+
     @Override
     public void setPoints( Point a, Point b, Point c, Point d )
     {
@@ -17,9 +27,24 @@ public class Parallelogram extends Quadrilateral
 
     protected boolean verifyParallelogram( Point a, Point b, Point c, Point d )
     {
-        if ( a.slope( b ) != c.slope( d ) || b.slope( c ) != d.slope( a ) )
+        if ( a.dist( b ) != c.dist( d ) || b.dist( c ) != d.dist( a ) )
             throw( new IllegalArgumentException( "Not a parallelogram." ) );
         else
             return true;
+    }
+
+    public double height()
+    {
+        return Point.lineDist( a, b, c, d );
+    }
+
+    public double width()
+    {
+        return a.dist( b );
+    }
+
+    public double area()
+    {
+        return height() * width();
     }
 }

@@ -27,10 +27,21 @@ public class Square extends Rectangle
 
     protected boolean verifySquare( Point a, Point b, Point c, Point d )
     {
-        if ( !verifyParallelogram( a, b, c, d ) ||
-            a.dist( b ) * b.dist( c ) != -1.0 )
+        if ( !verifyRectangle( a, b, c, d ) ||
+            a.dist( b ) != b.dist( c ) )
             throw( new IllegalArgumentException( "Not a square." ) );
         else
             return true;
+    }
+
+    public double side()
+    {
+        return a.dist( b );
+    }
+
+    @Override
+    public double area()
+    {
+        return Math.pow( side(), 2.0 );
     }
 }
