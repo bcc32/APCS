@@ -51,6 +51,13 @@ public class Point
             throw new IllegalArgumentException( "Vertical line." );
     }
 
+    public static double lineDist( Point a, Point b, Point c, Point d )
+    {
+        return Math.sqrt( Math.pow( a.getY() - a.getX() * a.slope( b )
+            - c.getY() - c.getX() * c.slope( d ), 2.0 )
+            / ( 1 + a.slope( b ) ) );
+    }
+
     public String toString()
     {
         return String.format( "(%s, %s)", getX(), getY() );

@@ -39,16 +39,8 @@ public class Trapezoid extends Quadrilateral
     public double height()
     {
         if ( Math.abs( a.slope( b ) - c.slope( d ) ) < EPSILON )
-        {
-            return Math.sqrt( Math.pow( a.getY() - a.getX() * a.slope( b )
-                - c.getY() - c.getX() * c.slope( d ), 2.0 )
-                / ( 1 + a.slope( b ) ) );
-        }
+            return Point.lineDist( a, b, c, d );
         else
-        {
-            return Math.sqrt( Math.pow( b.getY() - b.getX() * b.slope( c )
-                - d.getY() - d.getX() * d.slope( a ), 2.0 )
-                / ( 1 + b.slope( c ) ) );
-        }
+            return Point.lineDist( b, c, d, a );
     }
 }
