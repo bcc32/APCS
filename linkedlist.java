@@ -1,7 +1,7 @@
 import java.util.*;
 import java.io.*;
 
-public class temp
+public class linkedlist
 {
     public static void main( String[] args )
     {
@@ -12,12 +12,13 @@ public class temp
         list.add( num3 );
         list.addLast( num4 );
         list.addFirst( num1 );
+        list.addFirst( 1234 );
 
         System.out.println( Arrays.toString( list.toArray() ) );
 
         if ( list.isEmpty() )
-            Sytsem.out.println( "List is empty" );
+            System.out.println( "List is empty" );
         else
-            System.out.printf( "Size: %d\n", list.size(); );
+            System.out.printf( "Size: %d\n", list.size() );
     }
 }
