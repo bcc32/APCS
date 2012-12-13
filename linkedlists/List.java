@@ -1,37 +1,10 @@
 package linkedlists;
 
-class ListNode<T>
+public class List<T>
 {
-    T data;
-    ListNode<T> next;
-
-    ListNode( T object )
-    {
-        this( object, null );
-    }
-
-    ListNode( T object, ListNode<T> node )
-    {
-        data = object;
-        next = node;
-    }
-
-    T getData()
-    {
-        return data;
-    }
-
-    ListNode<T> getNext()
-    {
-        return next;
-    }
-}
-
-class List<T>
-{
-    private ListNode<T> first;
-    private ListNode<T> last;
-    private String name;
+    ListNode<T> first;
+    ListNode<T> last;
+    String name;
 
     public List()
     {
@@ -60,6 +33,15 @@ class List<T>
             last = last.next = new ListNode<T>( item );
     }
 
+    public T front() throws EmptyListException
+    {
+        if ( isEmpty() )
+            throw new EmptyListException( name );
+
+        T item = first.data;
+        return item;
+    }
+
     public T removeFromFront() throws EmptyListException
     {
         if ( isEmpty() )
@@ -75,6 +57,15 @@ class List<T>
         return item;
     }
 
+    public T back() throws EmptyListException
+    {
+        if ( isEmpty() )
+            throw new EmptyListException( name );
+
+        T item = last.data;
+        return item;
+    }
+
     public T removeFromBack() throws EmptyListException
     {
         if ( isEmpty() )
@@ -87,7 +78,7 @@ class List<T>
         else
         {
             ListNode<T> curr = first;
-            while ( curr != last )
+            while ( curr.next != last )
                 curr = curr.next;
             last = curr;
             curr.next = null;
@@ -119,18 +110,5 @@ class List<T>
         }
 
         System.out.println( "\n" );
-    }
-}
-
-class EmptyListException extends RuntimeException
-{
-    public EmptyListException()
-    {
-        this( "list" );
-    }
-
-    public EmptyListException( String name )
-    {
-        super( name + " is empty" );
     }
 }
