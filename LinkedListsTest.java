@@ -1,4 +1,5 @@
 import linkedlists.*;
+import java.util.Random;
 
 public class LinkedListsTest
 {
@@ -16,5 +17,11 @@ public class LinkedListsTest
 
         List<Integer> copy = ListMethods.reverseCopy( stack );
         copy.print();
+
+        Random rand = new Random();
+        List<Integer> list = new List<Integer>();
+        for ( int i = 0; i < 25; i++ )
+            list.insertInOrder( rand.nextInt( 100 ) );
+        list.print();
     }
 }

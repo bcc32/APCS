@@ -1,6 +1,6 @@
 package linkedlists;
 
-public class Stack<T> extends List<T>
+public class Stack<T extends Comparable<? super T>> extends List<T>
 {
     public void push( T item )
     {

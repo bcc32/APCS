@@ -2,7 +2,7 @@ package linkedlists;
 
 public class ListMethods
 {
-    public static <T> List<T> copy( List<T> list )
+    public static <T extends Comparable<? super T>> List<T> copy( List<T> list )
     {
         List<T> foo = new List<T>();
         ListNode<T> node = list.first;
@@ -14,14 +14,15 @@ public class ListMethods
         return foo;
     }
 
-    public static <T> List<T> reverseCopy( List<T> list )
+    public static <T extends Comparable<? super T>> List<T>
+            reverseCopy( List<T> list )
     {
         List<T> foo = new List<T>();
         ListNode<T> node = list.first;
         while ( node != null )
         {
-            node = node.next;
             foo.insertAtFront( node.data );
+            node = node.next;
         }
         return foo;
     }

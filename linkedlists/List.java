@@ -1,6 +1,6 @@
 package linkedlists;
 
-public class List<T>
+public class List<T extends Comparable<? super T>>
 {
     ListNode<T> first;
     ListNode<T> last;
@@ -31,6 +31,34 @@ public class List<T>
             first = last = new ListNode<T>( item );
         else
             last = last.next = new ListNode<T>( item );
+    }
+
+    public void insertInOrder( T item )
+    {
+        if ( isEmpty() )
+        {
+            insertAtBack( item );
+            return;
+        }
+        ListNode<T> node = first;
+        if ( first.data.compareTo( item ) >= 0 )
+        {
+            ListNode<T> insert = new ListNode<T>( item );
+            insert.next = first;
+            first = insert;
+            return;
+        }
+        while ( node.next != null )
+        {
+            if ( node.next.data.compareTo( item ) >= 0 )
+            {
+                ListNode<T> insert = new ListNode<T>( item );
+                insert.next = node.next;
+                node.next = insert;
+                return;
+            }
+            node = node.next;
+        }
     }
 
     public T front() throws EmptyListException
