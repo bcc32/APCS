@@ -59,6 +59,10 @@ public class List<T extends Comparable<? super T>>
             }
             node = node.next;
         }
+        ListNode<T> insert = new ListNode<T>( item );
+        insert.next = null;
+        last.next = insert;
+        last = insert;
     }
 
     public T front() throws EmptyListException
