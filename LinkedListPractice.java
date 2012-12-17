@@ -1,7 +1,7 @@
 import java.util.*;
 import java.io.*;
 
-public class linkedlist
+public class LinkedListPractice
 {
     public static void main( String[] args )
     {
