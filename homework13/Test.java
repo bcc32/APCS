@@ -13,12 +13,12 @@ public class Test
             System.out.println( s );
             if ( s instanceof TwoDimensionalShape )
             {
-                System.out.println( s.getArea() );
+                System.out.println( ( (TwoDimensionalShape)s ).getArea() );
             }
             else if ( s instanceof ThreeDimensionalShape )
             {
-                System.out.println( s.getArea() );
-                System.out.println( s.getVolume() );
+                System.out.println( ( (ThreeDimensionalShape)s ).getArea() );
+                System.out.println( ( (ThreeDimensionalShape)s ).getVolume() );
             }
         }
     }
