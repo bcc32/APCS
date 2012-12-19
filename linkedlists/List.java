@@ -128,7 +128,7 @@ public class List<T extends Comparable<? super T>>
     {
         if ( isEmpty() )
         {
-            System.out.printf( "Empty %s\n", name );
+            System.out.printf( "Empty %s\n\n", name );
             return;
         }
 
