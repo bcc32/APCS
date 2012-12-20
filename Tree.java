@@ -79,33 +79,43 @@ public class Tree<T extends Comparable<? super T>>
 
     public void insert( T item )
     {
-        insert( item, root );
+        insertNode( new TreeNode<T>( item, null, null, null ), root );
     }
 
     public void insert( T item, TreeNode<T> node )
     {
+        insertNode( new TreeNode<T>( item, null, null, null ), node );
+    }
+
+    public void insertNode( TreeNode<T> insert )
+    {
+        insertNode( insert, root );
+    }
+
+    public void insertNode( TreeNode<T> insert, TreeNode<T> node )
+    {
         if ( isEmpty() )
-            root = new TreeNode<T>( item, null, null, null );
+            root = insert;
         else if ( node == null )
-            throw new NullPointerException( "null node" );
-        else if ( item.equals( node.data ) )
             return;
-        else if ( item.compareTo( node.data ) < 0 )
+        else if ( insert.data.equals( node.data ) )
+            return;
+        else if ( insert.data.compareTo( node.data ) < 0 )
             if ( node.left == null )
             {
-                TreeNode<T> insert = new TreeNode<T>( item, null, null, node );
+                insert.up = node;
                 node.left = insert;
             }
             else
-                insert( item, node.left );
-        else // item.compareTo( node.data ) > 0
+                insertNode( insert, node.left );
+        else // insert.data.compareTo( node.data ) > 0
             if ( node.right == null )
             {
-                TreeNode<T> insert = new TreeNode<T>( item, null, null, node );
+                insert.up = node;
                 node.right = insert;
             }
             else
-                insert( item, node.right );
+                insertNode( insert, node.right );
     }
 
     public boolean isEmpty()
@@ -137,9 +147,8 @@ public class Tree<T extends Comparable<? super T>>
     {
         if ( node == null )
             return;
-        else if ( node == root )
-            root = null;
         else if ( node == node.up.left )
+            // TODO re-insert child nodes
             node.up.left = null;
         else
             node.up.right = null;
