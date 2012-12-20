@@ -5,7 +5,7 @@ public class LinkedListsTest
 {
     public static void main( String[] args )
     {
-        System.out.println( "Stack:" );
+        System.out.println( "Stack: " );
         Stack<Integer> stack = new Stack<Integer>();
         stack.push( 2 );
         stack.print();
@@ -35,11 +35,11 @@ public class LinkedListsTest
         queue.pop();
         queue.print();
 
-        System.out.println( "reverseCopy():" );
+        System.out.println( "reverseCopy(): " );
         List<Integer> copy = ListMethods.reverseCopy( stack );
         copy.print();
 
-        System.out.println( "insertInOrder():" );
+        System.out.println( "insertInOrder(): " );
         Random rand = new Random();
         List<Integer> list = new List<Integer>();
         for ( int i = 0; i < 25; i++ )
