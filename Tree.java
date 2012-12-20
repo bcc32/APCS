@@ -14,19 +14,67 @@ public class Tree<T extends Comparable<? super T>>
 
     public boolean contains( T item )
     {
-        return contains( item, root );
+        return find( item, root ) != null;
     }
 
     public boolean contains( T item, TreeNode<T> node )
     {
+        return find( item, node ) != null;
+    }
+
+    public void delete( T item )
+    {
+        remove( find( item, root ) );
+    }
+
+    public void delete( T item, TreeNode<T> node )
+    {
+        remove( find( item, node ) );
+    }
+
+    public TreeNode<T> find( T item )
+    {
+        return find( item, root );
+    }
+
+    public TreeNode<T> find( T item, TreeNode<T> node )
+    {
         if ( node == null )
-            return false;
+            return null;
         else if ( node.data.equals( item ) )
-            return true;
+            return node;
         else if ( item.compareTo( node.data ) < 0 )
-            return contains( item, node.left );
+            return find( item, node.left );
         else // item.compareTo( node.data ) > 0
-            return contains( item, node.right );
+            return find( item, node.right );
+    }
+
+    public TreeNode<T> findMax()
+    {
+        return findMax( root );
+    }
+
+    public TreeNode<T> findMax( TreeNode<T> node )
+    {
+        if ( node == null )
+            return null;
+        while ( node.right != null )
+            node = node.right;
+        return node;
+    }
+
+    public TreeNode<T> findMin()
+    {
+        return findMin( root );
+    }
+
+    public TreeNode<T> findMin( TreeNode<T> node )
+    {
+        if ( node == null )
+            return null;
+        while ( node.left != null )
+            node = node.left;
+        return node;
     }
 
     public void insert( T item )
@@ -65,17 +113,82 @@ public class Tree<T extends Comparable<? super T>>
         return root == null;
     }
 
+    public T max()
+    {
+        return findMin().data;
+    }
+
+    public T min()
+    {
+        return findMax().data;
+    }
+
     public void print()
     {
-        print( root );
+        traversePreOrder( root );
     }
 
     public void print( TreeNode<T> node )
     {
+        traversePreOrder( node );
+    }
+
+    public void remove( TreeNode<T> node )
+    {
         if ( node == null )
             return;
+        else if ( node == root )
+            root = null;
+        else if ( node == node.up.left )
+            node.up.left = null;
+        else
+            node.up.right = null;
+    }
+
+    public void traverseInOrder()
+    {
+        traverseInOrder( root );
+    }
+
+    public void traverseInOrder( TreeNode<T> node )
+    {
+        if ( node == null )
+            return;
+        traverseInOrder( node.left );
+        visit( node );
+        traverseInOrder( node.right );
+    }
+
+    public void traversePreOrder()
+    {
+        traversePreOrder( root );
+    }
+
+    public void traversePreOrder( TreeNode<T> node )
+    {
+        if ( node == null )
+            return;
+        visit( node );
+        traversePreOrder( node.left );
+        traversePreOrder( node.right );
+    }
+
+    public void traversePostOrder()
+    {
+        traversePostOrder( root );
+    }
+
+    public void traversePostOrder( TreeNode<T> node )
+    {
+        if ( node == null )
+            return;
+        traversePostOrder( node.left );
+        traversePostOrder( node.right );
+        visit( node );
+    }
+
+    public void visit( TreeNode<T> node )
+    {
         System.out.println( node.data );
-        print( node.left );
-        print( node.right );
     }
 }
