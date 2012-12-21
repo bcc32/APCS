@@ -32,6 +32,16 @@ public class Tree<T extends Comparable<? super T>>
         remove( find( item, node ) );
     }
 
+    public void deleteSubtree( T item )
+    {
+        removeSubtree( find( item, root ) );
+    }
+
+    public void deleteSubtree( T item, TreeNode<T> node )
+    {
+        removeSubtree( find( item, node ) );
+    }
+
     public TreeNode<T> find( T item )
     {
         return find( item, root );
@@ -161,6 +171,16 @@ public class Tree<T extends Comparable<? super T>>
             insertNode( right, left );
             node.up.right = left;
         }
+    }
+
+    public void removeSubtree( TreeNode<T> node )
+    {
+        if ( node == null )
+            throw new NullPointerException( "null node" );
+        else if ( node == node.up.left )
+            node.up.left = null;
+        else
+            node.up.right = null;
     }
 
     public void traverseInOrder()
