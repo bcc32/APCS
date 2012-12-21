@@ -14,7 +14,7 @@ public class Tree<T extends Comparable<? super T>>
 
     public boolean contains( T item )
     {
-        return find( item, root ) != null;
+        return contains( item, root );
     }
 
     public boolean contains( T item, TreeNode<T> node )
@@ -24,7 +24,7 @@ public class Tree<T extends Comparable<? super T>>
 
     public void delete( T item )
     {
-        remove( find( item, root ) );
+        delete( item, root );
     }
 
     public void delete( T item, TreeNode<T> node )
@@ -34,7 +34,7 @@ public class Tree<T extends Comparable<? super T>>
 
     public void deleteSubtree( T item )
     {
-        removeSubtree( find( item, root ) );
+        deleteSubtree( item, root );
     }
 
     public void deleteSubtree( T item, TreeNode<T> node )
@@ -89,7 +89,7 @@ public class Tree<T extends Comparable<? super T>>
 
     public void insert( T item )
     {
-        insertNode( new TreeNode<T>( item, null, null, null ), root );
+        insert( item, root );
     }
 
     public void insert( T item, TreeNode<T> node )
@@ -145,7 +145,7 @@ public class Tree<T extends Comparable<? super T>>
 
     public void print()
     {
-        traversePreOrder( root );
+        print( root );
     }
 
     public void print( TreeNode<T> node )
