@@ -148,10 +148,19 @@ public class Tree<T extends Comparable<? super T>>
         if ( node == null )
             return;
         else if ( node == node.up.left )
-            // TODO re-insert child nodes
-            node.up.left = null;
+        {
+            TreeNode<T> left = node.left;
+            TreeNode<T> right = node.right;
+            insertNode( right, left );
+            node.up.left = left;
+        }
         else
-            node.up.right = null;
+        {
+            TreeNode<T> left = node.left;
+            TreeNode<T> right = node.right;
+            insertNode( right, left );
+            node.up.right = left;
+        }
     }
 
     public void traverseInOrder()

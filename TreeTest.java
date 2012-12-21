@@ -18,8 +18,8 @@ public class TreeTest
         System.out.printf( "tree.contains( 7 ): %b\n", tree.contains( 7 ) );
         System.out.println();
 
-        System.out.println( "After deleting 11: " );
-        tree.delete( 11 );
+        System.out.println( "After deleting 12: " );
+        tree.delete( 12 );
         tree.print();
         System.out.println();
 
