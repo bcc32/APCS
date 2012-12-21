@@ -97,7 +97,7 @@ public class Tree<T extends Comparable<? super T>>
         if ( isEmpty() )
             root = insert;
         else if ( node == null )
-            return;
+            throw new NullPointerException( "null node" );
         else if ( insert.data.equals( node.data ) )
             return;
         else if ( insert.data.compareTo( node.data ) < 0 )
@@ -146,7 +146,7 @@ public class Tree<T extends Comparable<? super T>>
     public void remove( TreeNode<T> node )
     {
         if ( node == null )
-            return;
+            throw new NullPointerException( "null node" );
         else if ( node == node.up.left )
         {
             TreeNode<T> left = node.left;
