@@ -32,6 +32,10 @@ public class TreeTest
         tree.traversePostOrder();
         System.out.println();
 
+        System.out.println( "print(): " );
+        tree.print();
+        System.out.println();
+
         System.out.println( "After deleting subtree 5: ");
         tree.deleteSubtree( 5 );
         tree.print();

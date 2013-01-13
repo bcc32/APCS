@@ -150,7 +150,18 @@ public class Tree<T extends Comparable<? super T>>
 
     public void print( TreeNode<T> node )
     {
-        traversePreOrder( node );
+        print( node, 0 );
+    }
+
+    public void print( TreeNode<T> node, int level )
+    {
+        if ( node == null )
+            return;
+        print( node.right, level + 1 );
+        for ( int i = 0; i < level; i++ )
+            System.out.print( "    " );
+        System.out.println( node.data );
+        print( node.left, level + 1 );
     }
 
     public void remove( TreeNode<T> node )
