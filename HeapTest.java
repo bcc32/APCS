@@ -12,6 +12,6 @@ public class HeapTest
         heap.insert( 11 );
         heap.insert( 13 );
         while ( !heap.isEmpty() )
-            System.out.println( heap.removeMin().data );
+            System.out.println( heap.removeMin() );
     }
 }

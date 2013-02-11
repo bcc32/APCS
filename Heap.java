@@ -35,22 +35,32 @@ public class Heap<T extends Comparable<? super T>> extends Tree<T>
         return node;
     }
 
-    public TreeNode<T> removeMin()
+    public T peekMin()
+    {
+        return root.data;
+    }
+
+    public T removeMin()
     {
         if ( isEmpty() )
             throw new NullPointerException( "null node" );
-        TreeNode<T> min = root;
-        TreeNode<T> last = root;
-        while ( last.right != null )
-            last = last.right;
-        if ( last.left != null )
-            last = last.left;
-        if ( last.up != null )
-            if ( last == last.up.left )
-                last.up.left = null;
-            else
-                last.up.right = null;
-        root.data = last.data;
+        T min = root.data;
+        if ( root.left == null && root.right == null )
+            root = null;
+        else
+        {
+            TreeNode<T> last = root;
+            while ( last.right != null )
+                last = last.right;
+            if ( last.left != null )
+                last = last.left;
+            if ( last.up != null )
+                if ( last == last.up.left )
+                    last.up.left = null;
+                else
+                    last.up.right = null;
+            root.data = last.data;
+        }
         downHeapify( root );
         return min;
     }
@@ -62,7 +72,9 @@ public class Heap<T extends Comparable<? super T>> extends Tree<T>
 
     private void downHeapify( TreeNode<T> node )
     {
-        if ( node.left == null )
+        if ( node == null )
+            return;
+        else if ( node.left == null )
             return;
         else if ( node.right == null )
             if ( node.left.data.compareTo( node.data ) < 0 )
