@@ -19,6 +19,7 @@ import info.gridworld.actor.Bug;
 import info.gridworld.actor.Rock;
 import info.gridworld.actor.Actor;
 import info.gridworld.grid.UnboundedGrid;
+import java.awt.Color;
 
 /**
  * This class runs a world that contains a bug and a rock, added at random
@@ -33,11 +34,7 @@ public class BugRunner
     public static void main(String[] args)
     {
         ActorWorld world = new ActorWorld(new UnboundedGrid<Actor>());
-        Bug redBug = new Bug();
-        world.add(redBug);
-        System.out.println(redBug.getLocation());
-        randomBug(redBug, 9001);
-        System.out.println(redBug.getLocation());
+        makeBugs(world, 88);
         world.add(new Rock());
         world.show();
     }
@@ -66,6 +63,24 @@ public class BugRunner
             else
                 bug.setDirection(270);
             moveBug(bug, 1);
+        }
+    }
+
+
+    private static void colorBug(Bug bug)
+    {
+        int x = bug.getLocation().getRow();
+        int y = bug.getLocation().getCol();
+        bug.setColor(new Color(x & 255, 0, y & 255));
+    }
+
+    private static void makeBugs(ActorWorld world, int n)
+    {
+        for (int i = 0; i < n; i++)
+        {
+            Bug bug = new Bug();
+            world.add(bug);
+            colorBug(bug);
         }
     }
 }
