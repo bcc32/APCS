@@ -1,4 +1,4 @@
-/* 
+/*
  * AP(r) Computer Science GridWorld Case Study:
  * Copyright(c) 2005-2006 Cay S. Horstmann (http://horstmann.com)
  *
@@ -10,7 +10,7 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * @author Cay Horstmann
  */
 
@@ -31,8 +31,21 @@ public class BugRunner
     public static void main(String[] args)
     {
         ActorWorld world = new ActorWorld();
-        world.add(new Bug());
+        Bug redBug = new Bug();
+        world.add(redBug);
+        System.out.println(redBug.getLocation());
+        moveBug(redBug, 10);
         world.add(new Rock());
         world.show();
+    }
+
+    private static void moveBug(Bug bug, int n)
+    {
+        for (int i = 0; i < n; i++)
+        {
+            while (!bug.canMove())
+                bug.turn();
+            bug.move();
+        }
     }
 }
