@@ -36,7 +36,7 @@ public class BugRunner
         Bug redBug = new Bug();
         world.add(redBug);
         System.out.println(redBug.getLocation());
-        randomBug(redBug, 1000);
+        randomBug(redBug, 9001);
         System.out.println(redBug.getLocation());
         world.add(new Rock());
         world.show();
